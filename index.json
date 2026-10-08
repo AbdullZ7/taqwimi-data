@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "updated": "2026-10-08",
+  "countries": [
+    {
+      "id": "sa",
+      "name": "المناسبات السعودية",
+      "flag": "flag-sa"
+    },
+    {
+      "id": "us",
+      "name": "المناسبات الأمريكية",
+      "flag": "flag-us"
+    }
+  ],
+  "sets": [
+    "islamic",
+    "national",
+    "gov-salary",
+    "pension",
+    "social",
+    "hafiz",
+    "citizen",
+    "housing",
+    "rehab",
+    "school",
+    "us-holidays"
+  ]
+}

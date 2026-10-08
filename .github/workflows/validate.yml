@@ -1,10 +1,22 @@
-name: validate
+# On every push: join sets/*.json into occasions.json, check it, and commit the result so
+# GitHub Pages serves the fresh file. Editing on github.com is enough; no local tools needed.
+name: build
 on: [push, pull_request]
+permissions:
+  contents: write
 jobs:
-  check:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
+      - run: node build.mjs
       - run: node validate.mjs
+      - name: commit occasions.json when it changed
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "taqwimi-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add occasions.json
+          git diff --cached --quiet || (git commit -m "occasions.json: build" && git push)
